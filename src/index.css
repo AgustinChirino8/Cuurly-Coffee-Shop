@@ -68,12 +68,12 @@ header ul li a{
     font-weight: bold;
 }
 
-header .cart{
+header .carti_icon{
     position: relative;
     cursor: pointer;
 }
 
-header .cart span{
+header .carti_icon span{
     position: absolute;
     top: -1rem;
     right: -1.5rem;
@@ -210,6 +210,83 @@ header .cart span{
 
 .Buttom div a:hover{
     color: brown;
+}
+
+/* -------------------------------- CART ------------------------------------------ */
+.carritos{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    transition: all 300ms ease-in-out;
+    background-color: rgb(0, 0, 0, .1);
+    z-index: 2;
+    padding-bottom: 5rem;
+    visibility: hidden; 
+}
+
+.cart{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%)
+    scale(1);
+    width: 70;
+    height: 80%;
+    border-radius: 8px;
+    overflow-x: scroll;
+    transition: all 300ms ease-in-out;
+    background-color: black;
+     opacity:0; 
+     visibility:hidden; 
+}
+
+.cart h2{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.cart .show{
+    visibility: visible;
+}
+
+.cart .show{
+    transform:translate(-50% , -50%);
+    scale: (1.1);
+    opacity: 1;
+    visibility: hidden;
+}
+
+.cart_close span{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transform: all 300ms ease-in-out;
+    margin: 3rem 0 0 2rem;
+}
+
+.cart_close box-icon:hover {
+    fill:red; 
+}
+
+.carrito_center{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.carrito_item{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    width: 80%;
+    margin: 2rem auto;
+    box-shadow: 0 1px 10px brown;
+    border-radius: 5px;
+}
+
+.carrito_item img{
+    width:15px;
 }
 
 @media only screen and (max-width: 600px){
