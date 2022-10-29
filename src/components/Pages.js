@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 export const Pages = () => {
   return (
-    <div>Pages</div>
+    <section>
+    </section>
   )
 }
+
+export default Pages;
