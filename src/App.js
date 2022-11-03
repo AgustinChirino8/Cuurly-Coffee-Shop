@@ -7,6 +7,7 @@ import Inicio from "./components/Inicio/Inicio";
 import { DataProvider } from "./context/DataProvider";
 import { Cart } from "./components/Cart/Cart";
 
+
 function App() {
   return (
     <DataProvider>

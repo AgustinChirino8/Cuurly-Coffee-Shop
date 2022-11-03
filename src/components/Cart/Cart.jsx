@@ -19,7 +19,7 @@ export const Cart = () => {
     <div className={show1}>
       <div className={show2}>
         <div className="cart_close" onClick={tooglefalse}>
-          <button className="x">x</button>
+          <box-icons className="x">x</box-icons>
         </div>
         <h2>Su Carrito</h2>
         <div className="carrito_center">
