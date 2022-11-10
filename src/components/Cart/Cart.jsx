@@ -1,6 +1,5 @@
 import React from "react";
 import { useContext } from "react";
-import main from "../../Images/Design/Main.jpg";
 import DataContext from "../../context/DataProvider";
 
 export const Cart = () => {
@@ -13,43 +12,91 @@ export const Cart = () => {
   };
 
   const show1 = menu ? "carritos show" : "carritos";
-  const show2 = menu ? "carritos show" : "carritos";
+  const show2 = menu ? "carrito show" : "carrito";
+
+  const resta = (id) => {
+    carrito.forEach((item) => {
+      if (item.id === id) {
+        item.cantidad === 1 ? (item.cantidad = 1) : (item.cantidad -= 1);
+      }
+      setCarrito([...carrito]);
+    });
+  };
+
+  const suma = (id) => {
+    carrito.forEach((item) => {
+      if (item.id === id) {
+        item.cantidad += 1;
+      }
+      setCarrito([...carrito]);
+    });
+  };
+  const removeProducto = (id) => {
+    if (window.confirm("Quiere eliminar el producto?")) {
+      carrito.forEach((item, index) => {
+        if (item.id === id) {
+          item.cantidad = 1;
+          carrito.splice(index, 1);
+        }
+      });
+    }
+    setCarrito([...carrito]);
+  };
 
   return (
-    <div className={show1}>
-      <div className={show2}>
-        <div className="cart_close" onClick={tooglefalse}>
-          <box-icons className="x">x</box-icons>
+    <div className="carritos show">
+      <div className="carrito show">
+        <div className="carrito__close" onClick={tooglefalse}>
+          <box-icon name="x"></box-icon>
         </div>
         <h2>Su Carrito</h2>
-        <div className="carrito_center">
-          {carrito.map((producto) => (
-            <div className="carrito_item">
-              <img src={producto.image} alt="" />
-              <div>
-                <h3>{producto.title}</h3>
-                <p className="price">${producto.price}</p>
-              </div>
-              <div>
-                <span id="up-arrow" className="material-symbols-outlined">
-                  expand_less
-                </span>
-                <p className="cantidad">1</p>
-                <span id="down-arrow" class="material-symbols-outlined">
-                  expand_more
-                </span>
-              </div>
-              <div className="remove_item">
-                <span name="trash" className="material-symbols-outlined">
-                  delete
-                </span>
-              </div>
-            </div>
-          ))}
+
+        <div className="carrito__center">
+          {carrito.lenght === 0 ? (
+            <h2
+              style={{
+                textAlign: "center",
+                fontSize: "3rem",
+              }}
+            >
+              Carrito Vacio
+            </h2>
+          ) : (
+            <>
+              {carrito.map((producto) => (
+                <div className="carrito__item" key={producto.id}>
+                  <img src={producto.image} alt="" />
+                  <div>
+                    <h3>{producto.title}</h3>
+                    <p className="price">{producto.price}</p>
+                  </div>
+                  <div>
+                    <box-icon
+                      name="up-arrow"
+                      type="solid"
+                      onClick={() => suma(producto.id)}
+                    ></box-icon>
+                    <p className="cantidad">{producto.cantidad}</p>
+                    <box-icon
+                      name="down-arrow"
+                      type="solid"
+                      onClick={() => resta(producto.id)}
+                    ></box-icon>
+                  </div>
+                  <div
+                    className="remove__item"
+                    onClick={() => removeProducto(producto.id)}
+                  >
+                    <box-icon name="trash"></box-icon>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
         </div>
-        <div className="carrito_footer">
-          <h3>Total: $23123</h3>
-          <button className="btn">Finalizar Compra</button>
+        <div className="carrito__footer">
+          <h3> Total: $25000</h3>
+          <button className="btn">Paymment</button>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ import { useContext } from "react";
 export const Header = () => {
   const value = useContext(DataContext);
   const [menu , setMenu] = value.menu;
-  const [carrito , setCarrito] = value.carrito
+  const [carrito] = value.carrito
 
   console.log(menu)
 
