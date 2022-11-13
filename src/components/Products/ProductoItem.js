@@ -1,7 +1,6 @@
 import React from "react";
-import { useState , useContext } from "react";
+import { useContext } from "react";
 import DataContext from "../../context/DataProvider";
-import { NavLink } from "react-router-dom";
 
 export const ProductoItem = ({
   id,
@@ -32,11 +31,6 @@ export const ProductoItem = ({
       </div>
       <div className="Buttom">
         <button className="btn" onClick={() => addCarrito(id)}>Añadir al carrito</button>
-        <div>
-          <a href="#/" className="btn">
-            Vista
-          </a>
-        </div>
       </div>
     </div>
   );

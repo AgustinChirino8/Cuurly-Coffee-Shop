@@ -2,10 +2,12 @@ import React from "react";
 import { useContext } from "react";
 import DataContext from "../../context/DataProvider";
 
+
 export const Cart = () => {
   const value = useContext(DataContext);
   const [menu, setMenu] = value.menu;
   const [carrito, setCarrito] = value.carrito;
+  const [total] = value.total;
 
   const tooglefalse = () => {
     setMenu(false);
@@ -44,8 +46,8 @@ export const Cart = () => {
   };
 
   return (
-    <div className="carritos show">
-      <div className="carrito show">
+    <div className={show1}>
+      <div className={show2}>
         <div className="carrito__close" onClick={tooglefalse}>
           <box-icon name="x"></box-icon>
         </div>
@@ -95,7 +97,7 @@ export const Cart = () => {
           )}
         </div>
         <div className="carrito__footer">
-          <h3> Total: $25000</h3>
+          <h3>${total}</h3>
           <button className="btn">Paymment</button>
         </div>
       </div>
