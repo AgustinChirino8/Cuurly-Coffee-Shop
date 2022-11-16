@@ -12,7 +12,7 @@ export const Header = () => {
   const [menu , setMenu] = value.menu;
   const [carrito] = value.carrito
 
-  console.log(menu)
+  // console.log(menu)
 
   const toogleMenu = () => {
     setMenu(!menu)
