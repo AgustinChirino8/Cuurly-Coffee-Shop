@@ -9,6 +9,7 @@ export const ProductoItem = ({
   detail,
   image,
   category,
+  cantidad
 }) => {
 
   const value = useContext(DataContext);
