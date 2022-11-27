@@ -28,10 +28,10 @@ useEffect(() => {
         const productosFirebase = []
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
+          // console.log(doc.id, " => ", doc.data());
           productosFirebase.push({id:doc.id, ...doc.data()})
         });
-         console.log(productosFirebase);
+        //  console.log(productosFirebase);
         setProductos(productosFirebase)
 
         // if (producto) {
@@ -87,6 +87,7 @@ useEffect(() => {
     addCarrito: addCarrito,
     carrito: [carrito, setCarrito],
     total: [total, setTotal],
+    cantidad:1,
   };
 
   return (

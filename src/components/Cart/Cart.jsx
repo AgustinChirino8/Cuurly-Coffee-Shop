@@ -1,3 +1,4 @@
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import React from "react";
 import { useContext } from "react";
 import DataContext from "../../context/DataProvider";
@@ -7,6 +8,7 @@ export const Cart = () => {
   const value = useContext(DataContext);
   const [menu, setMenu] = value.menu;
   const [carrito, setCarrito] = value.carrito;
+  const [total] = value.total;
   
 
 
@@ -17,6 +19,15 @@ export const Cart = () => {
   const show1 = menu ? "carritos show" : "carritos";
   const show2 = menu ? "carrito show" : "carrito";
 
+  const suma = (id) => {
+    carrito.forEach((item) => {
+      if (item.id === id) {
+        item.cantidad += 1;
+      }
+      setCarrito([...carrito]);
+    });
+  };
+
   const resta = (id) => {
     carrito.forEach((item) => {
       if (item.id === id) {
@@ -26,14 +37,7 @@ export const Cart = () => {
     });
   };
 
-  const suma = (id) => {
-    carrito.forEach((item) => {
-      if (item.id === id) {
-        item.cantidad += 1;
-      }
-      setCarrito([...carrito]);
-    });
-  };
+
   const removeProducto = (id) => {
     if (window.confirm("Quiere eliminar el producto?")) {
       carrito.forEach((item, index) => {
@@ -45,6 +49,25 @@ export const Cart = () => {
     }
     setCarrito([...carrito]);
   };
+
+  const order = {
+    buyer:{
+      name:"Agustin",
+      email:"agustinchirino8@gmail.com",
+      phone:"123123123",
+      address:"asdadad"
+    },
+    item:carrito.map((producto) =>({id:producto.id,title:producto.title,price:producto.price,cantidad:producto.cantidad})),
+    total:{total},
+  }
+
+  const handleClick = () => {
+    const db = getFirestore();
+    const ordersCollection = collection(db , 'orders');
+    addDoc(ordersCollection,order)
+    .then(({id}) => console.log(id))
+    console.log("orden de compra generada");
+  }
 
   return (
     <div className={show1}>
@@ -77,7 +100,7 @@ export const Cart = () => {
                     <box-icon
                       name="up-arrow"
                       type="solid"
-                      onClick={() => suma(producto.id)}
+                      onClick={(() => suma(producto.id))}
                     ></box-icon>
                     <p className="cantidad">{producto.cantidad}</p>
                     <box-icon
@@ -98,9 +121,11 @@ export const Cart = () => {
           )}
         </div>
         <div className="carrito__footer">
-          <button className="btn">Paymment</button>
+          <h3>${total}</h3>
+          <button className="btn" onClick={handleClick}>Paymment</button>
         </div>
       </div>
     </div>
   );
 };
+
